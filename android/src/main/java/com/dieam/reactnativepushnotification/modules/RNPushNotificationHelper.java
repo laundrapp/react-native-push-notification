@@ -160,6 +160,13 @@ public class RNPushNotificationHelper {
         }
     }
 
+    public void formatLegacyData(Bundle bundle) {
+        Bundle dataBundle = bundle.getBundle("data");
+        bundle.putString("title", dataBundle.getString("t"));
+        bundle.putString("message", dataBundle.getString("a"));
+        bundle.putString("foreground", dataBundle.getString("_ab"));
+    }
+
     public void sendToNotificationCentre(Bundle bundle) {
         try {
             Class intentClass = getMainActivityClass();
@@ -171,7 +178,8 @@ public class RNPushNotificationHelper {
             if (bundle.getString("message") == null) {
                 // this happens when a 'data' notification is received - we do not synthesize a local notification in this case
                 Log.d(LOG_TAG, "Cannot send to notification centre because there is no 'message' field in: " + bundle);
-                return;
+                
+                formatLegacyData(bundle);
             }
 
             String notificationIdString = bundle.getString("id");
