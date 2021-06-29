@@ -54,7 +54,7 @@ In your `android/build.gradle`
 ```gradle
 ext {
     googlePlayServicesVersion = "<Your play services version>" // default: "+"
-    firebaseMessagingVersion = "<Your Firebase version>" // default: "+"
+    firebaseMessagingVersion = "<Your Firebase version>" // default: "21.1.0"
 
     // Other settings
     compileSdkVersion = <Your compile SDK version> // default: 23
